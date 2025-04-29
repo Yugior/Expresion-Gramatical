@@ -14,13 +14,13 @@ NP -> Pron | N | Det N | Det N PP | PossN
 PP -> P NP | P PossN
 VP -> V | V NP | V PP | VP PP
 
-
-Det -> 'vaba' | 'ju' | 'vai' | 'voe' | 'vehvi' | 'vadu' | 'geruta' | 'devado' | 'sotvad'
-N -> 'vaba' | 'ju' | 'vai' | 'voe' | 'vehvi' | 'vadu' | 'geruta' | 'devado' | 'sotvad'
+Det -> 'vaba' | 'ju' | 'vai' | 'voe' | 'vehvi' | 'vadu' | 'geruta' | 'devado' | 'sotvad' |
+N -> 'vaba' | 'ju' | 'vai' | 'voe' | 'vehvi' | 'vadu' | 'geruta' | 'devado' | 'sotvad' | 'vabani' | 'relva' | 'juv'  | 'julo' | 'viri' 
 Pron -> 'ani' | 'eso' | 'yaafu' | 'yaava'
 PossN -> 'vabani' | 'juso' | 'vadufu'
-V -> 'sareqso' | 'sosorq' | 'vurqso' | 'daraqso' | 'katvso' | 'sotreqso'
-P -> 'ager' | 'no' | 'vaq' | 'sha' | 'mahno' | 'solno'
+V -> 'sareqso' | 'sosorq' | 'vurqso' | 'daraqso' | 'katvso' | 'sotreqso' | 'lumaqso' | 'ramaqso' 
+P -> 'ager' | 'no' | 'vaq' | 'sha' | 'mahno' | 'solno' | 'mahn' 
+
 
 """)
 
