@@ -48,9 +48,74 @@ Debido a la escasa información canónica disponible, se recurrió a la **improv
 
 El resultado es un vocabulario funcional documentado en el archivo *"Diccionario Gerudo - Español"*.
 
+## 📖 Determinantes y Sustantivos
+
+| Gerudo  | Tipo     | Significado      | Origen / Composición |
+|---------|----------|------------------|----------------------|
+| vaba    | Det / N  | la / el          | -                    |
+| ju      | Det / N  | ese / cosa       | -                    |
+| vai     | Det / N  | una / uno        | -                    |
+| voe     | Det / N  | hombre           | -                    |
+| vehvi   | Det / N  | espada           | -                    |
+| vadu    | Det / N  | casa             | -                    |
+| geruta  | Det / N  | guardia          | -                    |
+| devado  | Det / N  | desierto         | -                    |
+| sotvad  | Det / N  | reina            | -                    |
+
+## 🛅 Pronombres
+
+| Gerudo  | Tipo     | Significado      |
+|---------|----------|------------------|
+| ani     | Pron     | yo               |
+| eso     | Pron     | tú               |
+| yaafu   | Pron     | él / ella        |
+| yaava   | Pron     | nosotros         |
+
+## 👥 Posesivos
+
+| Gerudo  | Tipo     | Significado      | Compuesto de      |
+|---------|----------|------------------|-------------------|
+| vabani  | PossN    | mi cosa          | vaba + ani        |
+| juso    | PossN    | tu cosa          | ju + eso          |
+| vadufu  | PossN    | nuestra casa     | vadu + yaava      |
+
+## 🔊 Verbos
+
+| Gerudo   | Tipo     | Significado      |
+|----------|----------|------------------|
+| sareqso  | V        | correr           |
+| sosorq   | V        | ver              |
+| vurqso   | V        | tener            |
+| daraqso  | V        | proteger         |
+| katvso   | V        | decir            |
+| sotreqso | V        | gobernar         |
+
+## 🗺️ Preposiciones
+
+| Gerudo  | Tipo     | Significado      |
+|---------|----------|------------------|
+| ager    | P        | en               |
+| no      | P        | con              |
+| vaq     | P        | bajo             |
+| sha     | P        | sobre            |
+| mahno   | P        | hacia            |
+| solno   | P        | desde            |
+
+### Análisis de ambigüedad y clasificación en la jerarquía de Chomsky
+
+La gramática Gerudo, al presentar múltiples formas válidas de parsear ciertas oraciones, exhibe ambigüedad. Además, el uso de producciones con recursividad a la izquierda (`VP → VP PP`) añade complejidad al análisis sintáctico.
+
+Esto posiciona a la gramática dentro del conjunto de gramáticas libres de contexto (Context-free) en la Jerarquía Extendida de Chomsky, como se muestra en la siguiente imagen:
+
+![Jerarquía de Chomsky](https://ejemplo.com/imagen-jerarquia-chomsky.png)
+
+Este tipo de gramáticas son suficientes para expresar la mayoría de las estructuras del lenguaje natural, aunque su ambigüedad requiere parsers más robustos (por ejemplo, "Earley" o "GLR" en lugar de "LL(1)").
+
+El objetivo de este proyecto fue buscar un lenguaje que pudiera adaptarse a un análisis sintáctico de tipo "LL(1)". Sin embargo, debido a la ambigüedad presente, la gramática inicial no es adecuada para este tipo de parser sin ser transformada. Es por ello que se exploraron múltiples formas de derivación y se consideraron estrategias para eliminar la ambigüedad.
+
 ---
 
-## 🔹 Gramática Gerudo (resumen formal)
+## 🔹 Gramática Gerudo 
 La gramática utilizada contiene recursividad a la izquierda y ambigüedad, lo que fue un reto para los analizadores sintácticos. Se muestra aquí antes del proceso de transformación:
 
 ### Versión inicial (con ambigüedad):
@@ -162,4 +227,33 @@ La ambigüedad surgía originalmente de la producción recursiva VP -> VP PP, qu
  ju sosorq     mahno     vabani
 ```
 
+En este proceso se denota también otro proceso de ambiguedad. Con esta informacion se procedió a eliminar la fuente, esta vez derivada de la producción PP:
 
+#### Versión previa con ambigüedad:
+```bnf
+NP -> Pron | N | Det N | Det N PP | P PossN
+PP -> P NP | P PossN
+```
+Se eliminó la regla "PP -> P PossN" y se conservó únicamente "PP -> P NP". Esto obliga a que las construcciones posesivas aparezcan únicamente dentro de un NP bien definido, removiendo así la bifurcación de interpretación de "PP".
+
+#### Nueva forma sin ambigüedad:
+
+```bnf
+S -> NP VP
+NP -> Pron | N | Det N | Det N PP | P PossN
+PP -> P NP
+VP -> V | V NP | V PP
+
+            S
+  __________|____
+ |               VP
+ |     __________|____
+ NP   |               NP       
+ |    |           ____|____     
+ N    V          P       PossN 
+ |    |          |         |    
+ ju sosorq     mahno     vabani
+```
+Al eliminar la doble opción de derivación para PP, se evita que el analizador sintáctico deba decidir entre dos formas de reducir la misma cadena, y por tanto se elimina la ambigüedad.
+
+------
