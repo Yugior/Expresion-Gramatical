@@ -5,14 +5,27 @@ from nltk import CFG
 nltk.download('punkt')
 
 # Define a context-free grammar
-
-# gramatica libre de contexto inicial
 grammar = CFG.fromstring("""
 
+
 S -> NP VP
-NP -> Pron | N | Det N | Det N PP | PossN
-PP -> P NP | P PossN
-VP -> V | V NP | V PP | VP PP
+
+VP -> VSimple
+VP -> VCompuesto
+VP -> VConPP
+
+VSimple -> V
+VCompuesto -> V NP
+VConPP -> V NP PP
+VConPP -> V PP
+
+NP -> Pron
+NP -> N
+NP -> Det N
+NP -> Det N PP
+NP -> P PossN
+
+PP -> P NP
 
 Det -> 'vaba' | 'ju' | 'vai' | 'voe' | 'vehvi' | 'vadu' | 'geruta' | 'devado' | 'sotvad'
 N -> 'vaba' | 'ju' | 'vai' | 'voe' | 'vehvi' | 'vadu' | 'geruta' | 'devado' | 'sotvad' | 'relva' | 'juv'  | 'julo' | 'viri' 
