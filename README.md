@@ -1,4 +1,7 @@
 # Expresion-Gramatical
+## Horacio Villela Hernández  
+## A01712206  
+## 29/04/2025  
 
 El lenguaje Gerudo es una lengua construida ficticia, inspirada en la cultura del pueblo Gerudo de la serie *The Legend of Zelda*. Esta implementación formaliza su gramática y vocabulario, permitiendo su análisis sintáctico mediante herramientas como NLTK.
 
@@ -46,7 +49,7 @@ Debido a la escasa información canónica disponible, se recurrió a la **improv
 2. Asignación fonética coherente para mantener estética uniforme.
 3. Creación desde cero de palabras basadas en sonidos frecuentes.
 
-El resultado es un vocabulario funcional documentado en el archivo *"Diccionario Gerudo - Español"*.
+El resultado es un vocabulario funcional documentado en el archivo *"Diccionario Gerudo - Español"*. De igual forma se exhibe a continuacion un fragmento de el documento.
 
 ## 📖 Determinantes y Sustantivos
 
@@ -106,8 +109,6 @@ El resultado es un vocabulario funcional documentado en el archivo *"Diccionario
 La gramática Gerudo, al presentar múltiples formas válidas de parsear ciertas oraciones, exhibe ambigüedad. Además, el uso de producciones con recursividad a la izquierda (`VP → VP PP`) añade complejidad al análisis sintáctico.
 
 Esto posiciona a la gramática dentro del conjunto de gramáticas libres de contexto (Context-free) en la Jerarquía Extendida de Chomsky, como se muestra en la siguiente imagen:
-
-![Jerarquía de Chomsky](https://ejemplo.com/imagen-jerarquia-chomsky.png)
 
 Este tipo de gramáticas son suficientes para expresar la mayoría de las estructuras del lenguaje natural, aunque su ambigüedad requiere parsers más robustos (por ejemplo, "Earley" o "GLR" en lugar de "LL(1)").
 
@@ -257,3 +258,87 @@ VP -> V | V NP | V PP
 Al eliminar la doble opción de derivación para PP, se evita que el analizador sintáctico deba decidir entre dos formas de reducir la misma cadena, y por tanto se elimina la ambigüedad.
 
 ------
+
+## 🔎 Cómo y por qué se eliminó la recursividad a la izquierda al eliminar la ambigüedad
+
+Durante el proceso de eliminación de ambigüedad en la gramática del lenguaje Gerudo, fue necesario también eliminar la recursividad a la izquierda, ya que era una de las principales fuentes de ambigüedad estructural.
+
+### ¿Dónde estaba la recursividad a la izquierda?
+
+La recursividad a la izquierda aparecía principalmente en la regla de **VP**:
+
+```bnf
+VP -> V | V NP | V PP | VP PP
+```
+
+La producción `VP -> VP PP` es recursiva a la izquierda, porque el símbolo `VP` aparece de nuevo como primer elemento de su propia definición. Esto permitía expandir infinitamente la regla, generando múltiples árboles sintácticos diferentes para la misma cadena de entrada, provocando ambigüedad.
+
+### ¿Cómo se elimina?
+
+Suponniendo que esta regla no fuera modificada,Se aplicaria el proceso estándar para eliminar recursividad a la izquierda:
+
+1. Se identifica que `VP -> VP PP` causaba la recursividad.
+2. Se reorganiza la producción de `VP` para que empezara siempre por un verbo (`V`), seguido opcionalmente de complementos (`NP` o `PP`).
+3. Se introduce un nuevo no terminal `VP'` (VP prima) que se encarga de manejar secuencias opcionales de complementos:
+
+```bnf
+VP -> V VP'
+VP' -> NP VP' | PP VP' | ε
+```
+Esto garantiza que no haya más auto-llamadas inmediatas a `VP` desde su primera posición, eliminando así la recursividad a la izquierda.
+
+### ¿Por qué fue necesario eliminarla?
+
+- Porque la recursividad a la izquierda impide construir árboles sintácticos de forma determinista en analizadores descendentes como los LL(1).
+- En este caso estaba directamente relacionada con la ambigüedad, ya que múltiples interpretaciones surgían dependiendo de cómo se aplicaba la expansión `VP -> VP PP`.
+- Al forzar una estructura donde primero siempre hay un verbo seguido de complementos de manera secuencial, se garantiza que solo exista un árbol sintáctico posible para cada oración, eliminando así tanto la recursividad a la izquierda como la ambigüedad.
+
+------
+
+
+## 📚 Clasificación de oraciones simples y compuestas
+
+Durante la evolución de la gramática, se decidió detallar las estructuras de los sintagmas verbales dividiendo el no terminal `VP` en componentes más específicos:
+
+```bnf
+S -> NP VP
+
+VP -> VSimple
+VP -> VCompuesto
+VP -> VConPP
+
+VSimple -> V
+VCompuesto -> V NP
+VConPP -> V NP PP
+VConPP -> V PP
+
+            S
+  __________|______
+ |                 VP
+ |                 |
+ |             VCompuesto
+ |     ____________|_______
+ NP   |                    NP
+ |    |             _______|____
+ N    V            P          PossN
+ |    |            |            |
+ ju sosorq       mahno        vabani
+```
+
+
+Esta división permite clasificar oraciones según su complejidad verbal:
+
+- **Oración simple**: Solo contiene un verbo (`VSimple`).
+- **Oración compuesta o extendida**: Contiene un verbo con uno o más complementos (`VCompuesto` o `VConPP`).
+
+### ¿Por qué se hizo esta clasificación?
+
+1. **Claridad estructural**: Ayuda a comprender mejor el tipo de acción expresada y su grado de complejidad.
+2. **Facilitación del análisis sintáctico**: La distinción permite una identificación más precisa y rápida del tipo de oración.
+3. **Evolución hacia análisis semántico**: Al identificar si una oración es simple o compuesta, se allana el camino para un análisis semántico más fino (como el número de participantes en la acción).
+
+Esta decisión también permitió refinar el conjunto de árboles sintácticos aceptables y redujo aún más los casos de ambigüedad al especificar más claramente las construcciones posibles en cada tipo de oración.
+
+## ⚖️ Licencia
+
+Este proyecto es educativo y no oficial. Inspirado por la serie *The Legend of Zelda*. Toda la lógica gramatical y vocabulario fueron diseñados para fines académicos.
