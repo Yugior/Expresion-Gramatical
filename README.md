@@ -342,3 +342,29 @@ Esta decisión también permitió refinar el conjunto de árboles sintácticos a
 ## ⚖️ Licencia
 
 Este proyecto es educativo y no oficial. Inspirado por la serie *The Legend of Zelda*. Toda la lógica gramatical y vocabulario fueron diseñados para fines académicos.
+
+## Archivos
+
+"ExpresionGramatical.py" Muestra la expresion original antes de quitar ambiguedad
+"Sinambiguedad1.py" Muestra la expresion al quitar la ambiguedad generada por "VP"
+"Sinambiguedad2.py" Muestra la expresion al quitar la amiguedad generada por "PP" luego de haber quitado la anterior
+"ExpresionFinal.py" Muestra la ultima edicion, permitiendo el uso de oraciones mas complejas
+"Ejemplosfuncionales.py" Casos de muestra de oraciones que se ejecutan en Español y el idioma correspondiente
+## Uso adecuado del programa
+
+- Si bien en el dicionario pararecen mas tipos de palabras, por temas de complejidad solo se permiten las mostradas en la documentacion
+
+- Tener en cuenta donde agregar palabras, el uso de los ejemplos de prueba se añadieron las palabras correspondientes una por una, de requerir una palabra que no este en los scripts
+  Se les pide estar atentos al momento de elegir y colocar la palabra dentro de este, de lo contrario la oracion no sera aceptada por el programa
+
+- Para evitar problemas con el programa se quitaron las comillas de las palabras debido al malfuncionamiento y errores que causaban, en caso de agregar nuevas palabras recuerden quitar las comillas
+  en caso de ser necesario
+
+  
+## Bibliografia
+
+Abril, R. R. (2024). La Jerarquía de Chomsky. La Máquina Oráculo. https://lamaquinaoraculo.com/deep-learning/la-jerarquia-de-chomsky/
+
+Seiboz. (n.d.). Intro to the Fan-Expanded Gerudo Language (OC) : r/Breath_of_the_Wild. https://www.reddit.com/r/Breath_of_the_Wild/comments/oqnxat/intro_to_the_fanexpanded_gerudo_language_oc/
+
+Seiboz. (n.d.). Brainstorming: Gerudo Verb System (Gerudo Language Fan Expansion Pt 2) : r/Breath_of_the_Wild. https://www.reddit.com/r/Breath_of_the_Wild/comments/p7ail8/brainstorming_gerudo_verb_system_gerudo_language/?utm_medium=android_app&utm_source=share
