@@ -51,6 +51,7 @@ El resultado es un vocabulario funcional documentado en el archivo *"Diccionario
 ---
 
 ## 🔹 Gramática Gerudo (resumen formal)
+La gramática utilizada contiene recursividad a la izquierda y ambigüedad, lo que fue un reto para los analizadores sintácticos. Se muestra aquí antes del proceso de transformación:
 
 ### Versión inicial (con ambigüedad):
 ```bnf
@@ -64,3 +65,52 @@ Pron -> 'ani' | 'eso' | 'yaafu' | 'yaava'
 PossN -> 'vabani' | 'juso' | 'vadufu'
 V -> 'sareqso' | 'sosorq' | 'vurqso' | 'daraqso' | 'katvso' | 'sotreqso'
 P -> 'ager' | 'no' | 'vaq' | 'sha' | 'mahno' | 'solno'
+```
+### 🌪️ Árboles de análisis mostrando ambigüedad (antes de eliminar recursividad a la izquierda)
+```bnf
+            S
+  __________|____
+ |               VP
+ |     __________|____
+ NP   VP              PP       
+ |    |           ____|____     
+ N    V          P       PossN 
+ |    |          |         |    
+ ju sosorq     mahno     vabani
+
+            S
+  __________|____
+ |               VP
+ |     __________|____
+ |    |               PP
+ |    |           ____|____
+ NP   VP         |         NP
+ |    |          |         |
+ N    V          P       PossN
+ |    |          |         |
+ ju sosorq     mahno     vabani
+
+            S
+  __________|____
+ |               VP
+ |     __________|____
+ NP   |               PP
+ |    |           ____|____
+ N    V          P       PossN
+ |    |          |         |
+ ju sosorq     mahno     vabani
+
+            S
+  __________|____
+ |               VP
+ |     __________|____
+ |    |               PP
+ |    |           ____|____
+ NP   |          |         NP
+ |    |          |         |
+ N    V          P       PossN
+ |    |          |         |
+ ju sosorq     mahno     vabani
+```
+
+
