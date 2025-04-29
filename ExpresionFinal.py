@@ -7,6 +7,7 @@ nltk.download('punkt')
 # Define a context-free grammar
 grammar = CFG.fromstring("""
 
+
 S -> NP VP
 
 VP -> VSimple
@@ -28,17 +29,17 @@ PP -> P NP
 
 
 
-Det -> 'vaba' | 'ju' | 'vai' | 'voe' | 'vehvi' | 'vadu' | 'geruta' | 'devado' | 'sotvad'
+Det -> 'vaba' | 'ju' | 'vai' | 'voe' | 'vehvi' | 'vadu' | 'geruta' | 'devado' | 'sotvad' |
 
-N -> 'vaba' | 'ju' | 'vai' | 'voe' | 'vehvi' | 'vadu' | 'geruta' | 'devado' | 'sotvad'
+N -> 'vaba' | 'ju' | 'vai' | 'voe' | 'vehvi' | 'vadu' | 'geruta' | 'devado' | 'sotvad' | 'vabani' | 'relva' | 'juv'  | 'julo' | 'viri' 
 
 Pron -> 'ani' | 'eso' | 'yaafu' | 'yaava'
 
 PossN -> 'vabani' | 'juso' | 'vadufu'
 
-V -> 'sareqso' | 'sosorq' | 'vurqso' | 'daraqso' | 'katvso' | 'sotreqso'
+V -> 'sareqso' | 'sosorq' | 'vurqso' | 'daraqso' | 'katvso' | 'sotreqso' | 'lumaqso' | 'ramaqso' 
 
-P -> 'ager' | 'no' | 'vaq' | 'sha' | 'mahno' | 'solno'
+P -> 'ager' | 'no' | 'vaq' | 'sha' | 'mahno' | 'solno' | 'mahn' 
 
 """)
 
