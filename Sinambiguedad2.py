@@ -11,7 +11,6 @@ NP -> Pron | N | Det N | Det N PP | P PossN
 PP -> P NP 
 VP -> V | V NP | V PP
 
-
 Det -> 'vaba' | 'ju' | 'vai' | 'voe' | 'vehvi' | 'vadu' | 'geruta' | 'devado' | 'sotvad'
 N -> 'vaba' | 'ju' | 'vai' | 'voe' | 'vehvi' | 'vadu' | 'geruta' | 'devado' | 'sotvad'
 Pron -> 'ani' | 'eso' | 'yaafu' | 'yaava'
