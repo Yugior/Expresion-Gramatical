@@ -112,5 +112,54 @@ P -> 'ager' | 'no' | 'vaq' | 'sha' | 'mahno' | 'solno'
  |    |          |         |
  ju sosorq     mahno     vabani
 ```
+Como se observa, existen varias formas diferentes de asociar los complementos PP al VP, lo que genera múltiples árboles de derivación (es decir, ambigüedad estructural).
+
+Posteriormente, se eliminó la recursividad a la izquierda siguiendo técnicas estándar de transformación de gramáticas, similares a las utilizadas para expresar la precedencia de operadores en gramáticas matemáticas.
+
+Nueva versión sin ambigüedad en VP:
+```bnf
+
+S -> NP VP
+NP -> Pron | N | Det N | Det N PP | PossN
+PP -> P NP | P PossN
+VP -> V VP'
+VP' -> NP VP' | PP VP' | ε
+Det -> 'vaba' | 'ju' | 'vai' | 'voe' | 'vehvi' | 'vadu' | 'geruta' | 'devado' | 'sotvad'
+N -> 'vaba' | 'ju' | 'vai' | 'voe' | 'vehvi' | 'vadu' | 'geruta' | 'devado' | 'sotvad'
+Pron -> 'ani' | 'eso' | 'yaafu' | 'yaava'
+PossN -> 'vabani' | 'juso' | 'vadufu'
+V -> 'sareqso' | 'sosorq' | 'vurqso' | 'daraqso' | 'katvso' | 'sotreqso'
+P -> 'ager' | 'no' | 'vaq' | 'sha' | 'mahno' | 'solno'
+
+```
+### ¿Por qué se eliminó la ambigüedad?
+
+La ambigüedad surgía originalmente de la producción recursiva VP -> VP PP, que permitía infinitas formas de asociar complementos preposicionales (PP) a distintos niveles del VP, haciendo incierta la estructura. Al reformular VP como V VP', donde VP' se encarga de manejar opcionalmente complementos (NP o PP) de manera estrictamente secuencial y sin recursividad izquierda, se fuerza a que cada verbo tome un conjunto de complementos de manera determinista. Así, cada oración tiene una única forma de derivación sintáctica, eliminando las múltiples interpretaciones posibles.
+
+### 🛠️ Árbol corregido (estructura sin ambigüedad):
+
+```bnf
+            S
+  __________|____
+ |               VP
+ |     __________|____
+ NP   |               PP
+ |    |           ____|____
+ N    V          P       PossN
+ |    |          |         |
+ ju sosorq     mahno     vabani
+
+            S
+  __________|____
+ |               VP
+ |     __________|____
+ |    |               PP
+ |    |           ____|____
+ NP   |          |         NP
+ |    |          |         |
+ N    V          P       PossN
+ |    |          |         |
+ ju sosorq     mahno     vabani
+```
 
 
