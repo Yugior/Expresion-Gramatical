@@ -1,12 +1,11 @@
-#Horacio Villela Hernandez A01712206 28/04/2025
-
+#Horacio Villela Hernandez A01712206 28/04/2025   Actualizacion 21/05/2025
+#Nota, En caso de agregar palabras del diccionario al vocabulario, agregalas en el apartado correspondiente o ocacionara ambiguedad al estar en dos estados en lugar de uno
 import nltk
 from nltk import CFG
 nltk.download('punkt')
 
 # Define a context-free grammar
 grammar = CFG.fromstring("""
-
 
 S -> NP VP
 
@@ -25,21 +24,18 @@ NP -> Det N
 NP -> Det N PP
 NP -> P PossN
 
+
 PP -> P NP
 
 
-
-Det -> 'vaba' | 'ju' | 'vai' | 'voe' | 'vehvi' | 'vadu' | 'geruta' | 'devado' | 'sotvad' |
-
-N -> 'vaba' | 'ju' | 'vai' | 'voe' | 'vehvi' | 'vadu' | 'geruta' | 'devado' | 'sotvad' | 'vabani' | 'relva' | 'juv'  | 'julo' | 'viri' 
-
+Det -> 'vaba' | 'ju' | 'vai' | 'voe' | 'vehvi' | 'vadu' | 'geruta' | 'devado' | 'sotvad'
+N -> 'vaba' | 'ju' | 'vai' | 'voe' | 'vehvi' | 'vadu' | 'geruta' | 'devado' | 'sotvad' | 'relva' | 'juv'  | 'julo' | 'viri' 
 Pron -> 'ani' | 'eso' | 'yaafu' | 'yaava'
-
 PossN -> 'vabani' | 'juso' | 'vadufu'
-
 V -> 'sareqso' | 'sosorq' | 'vurqso' | 'daraqso' | 'katvso' | 'sotreqso' | 'lumaqso' | 'ramaqso' 
-
 P -> 'ager' | 'no' | 'vaq' | 'sha' | 'mahno' | 'solno' | 'mahn' 
+
+
 
 """)
 
@@ -48,7 +44,6 @@ parser = nltk.ChartParser(grammar)
 
 # Input sentence to be parsed
 sentence = "ju sosorq mahno vabani"
-
 # Tokenize the sentence
 tokens = sentence.split()
 
