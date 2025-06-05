@@ -62,6 +62,7 @@ El resultado es un vocabulario funcional documentado en el archivo *"Diccionario
 | vai   | Det / N  | mujer            | -                    |
 | vehvi   | Det / N  | niño/niña    | -                    |
 | vermi   | Det / N  | espada            | -                    |
+| devado   | Det / N  | luna            | -                    |
 | vadu    | Det / N  | casa             | -                    |
 | geruda  | Det / N  | guardia          | -                    |
 | geruta  | Det / N  | aldea            | -                    |
