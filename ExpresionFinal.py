@@ -1,5 +1,8 @@
-#Horacio Villela Hernandez A01712206 28/04/2025   Actualizacion 21/05/2025
-#Nota, En caso de agregar palabras del diccionario al vocabulario, agregalas en el apartado correspondiente o ocacionara ambiguedad al estar en dos estados en lugar de uno
+# Horacio Villela Hernandez A01712206 28/04/2025   
+# Actualizacion 21/05/2025
+# Actualizacion 05/06/2025
+# Nota: En caso de agregar palabras del diccionario al vocabulario, agrégalas en el apartado correspondiente o ocasionará ambigüedad al estar en dos estados en lugar de uno.
+
 import nltk
 from nltk import CFG
 nltk.download('punkt')
@@ -13,6 +16,7 @@ VP -> VSimple
 VP -> VCompuesto
 VP -> VConPP
 
+
 VSimple -> V
 VCompuesto -> V NP
 VConPP -> V NP PP
@@ -24,26 +28,21 @@ NP -> Det N
 NP -> Det N PP
 NP -> P PossN
 
-
 PP -> P NP
 
-
-Det -> 'vaba' | 'ju' | 'vai' | 'voe' | 'vehvi' | 'vadu' | 'geruta' | 'devado' | 'sotvad'
-N -> 'vaba' | 'ju' | 'vai' | 'voe' | 'vehvi' | 'vadu' | 'geruta' | 'devado' | 'sotvad' | 'relva' | 'juv'  | 'julo' | 'viri' 
-Pron -> 'ani' | 'eso' | 'yaafu' | 'yaava'
+Det -> 'vana' | 'jug' | 'vaim' |'ane' 
+N ->    'voe'|'vermi'|'vai' | 'vaba' | 'vehvi' | 'vadu' | 'geruda' | 'devado' | 'sotvad' | 'relva' | 'juv' | 'julo' | 'viri' | 'geruta'
+Pron -> 'ani' | 'eso' | 'yaafu' | 'yaavaa' | 'esoen'
 PossN -> 'vabani' | 'juso' | 'vadufu'
 V -> 'sareqso' | 'sosorq' | 'vurqso' | 'daraqso' | 'katvso' | 'sotreqso' | 'lumaqso' | 'ramaqso' 
 P -> 'ager' | 'no' | 'vaq' | 'sha' | 'mahno' | 'solno' | 'mahn' 
 
-
-
 """)
-
 # Create a parser with the defined grammar
 parser = nltk.ChartParser(grammar)
 
 # Input sentence to be parsed
-sentence = "ju sosorq mahno vabani"
+sentence = "ane vai lumaqso mahno geruta"
 # Tokenize the sentence
 tokens = sentence.split()
 
