@@ -353,6 +353,7 @@ Este proyecto es educativo y no oficial. Inspirado por la serie *The Legend of Z
 "Sinambiguedad1.py" Muestra la expresion al quitar la ambiguedad generada por "VP"
 "Sinambiguedad2.py" Muestra la expresion al quitar la amiguedad generada por "PP" luego de haber quitado la anterior
 "ExpresionFinal.py" Muestra la ultima edicion, permitiendo el uso de oraciones mas complejas
+"ExpF.py" Muestra casos de prueba a partir de las oraciones posibles de "ExpresionFinal.py"
 "Ejemplosfuncionales.py" Casos de muestra de oraciones que se ejecutan en Español y el idioma correspondiente
 ## Uso adecuado del programa
 
@@ -369,6 +370,14 @@ Este proyecto es educativo y no oficial. Inspirado por la serie *The Legend of Z
     - Se mejoraron y agregaron comentarios adicionales
     - Caso de error de ambiguedad, causado a partir de duplicidad de palabras en posisiones incorrectas dentro de la expresión regular y a partir de un simbolo "|" extra en las    reglas terminales Det y Poss
   - Se agrego una funcion para el caso de pruebas junto a un nuevo archivo llamado "ExpF.py" Se recomienda usar este para correr las pruebas, en lugar de "ExpresionFinal.py", debido a que en este ultimo solo se ejecutan las pruebas de uno en uno
+  - Se modifoco el archivo "Ejemplosfuncionales.py" para corregir lo siguiente.
+    - Se agregaron comentarios a las pruebas
+    - Se agregaron pruebas de rechazo y validas para corroborar la Expresion gramatical.
+  - Se modifico el diccionario debido a varios errores
+    - Exisitian palabras iguales con diferente signiicado ej(vanabi/abuela,vanabi/niñ@)
+    - Falta de congruencia entre oraciones
+    - Se mejoro y actualizo las tablas del diccionario (Cabe aclarar que no estan todas las palabras en el "Readme" o en "Diccionario.pdf" debido a la complejidad de modificar diferentes archivos, en caso de bscar una palabra en especifico, favor de checar ambos.)
+    - 
   
 ## Bibliografia
 
