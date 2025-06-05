@@ -59,7 +59,8 @@ El resultado es un vocabulario funcional documentado en el archivo *"Diccionario
 | jug      | Det / N  | ese / cosa       | -                    |
 | vaim     | Det / N  | una / uno        | -                    |
 | voe     | Det / N  | hombre           | -                    |
-| vehvi   | Det / N  | mujer            | -                    |
+| vai   | Det / N  | mujer            | -                    |
+| vehvi   | Det / N  | niño/niña    | -                    |
 | vermi   | Det / N  | espada            | -                    |
 | vadu    | Det / N  | casa             | -                    |
 | geruda  | Det / N  | guardia          | -                    |
