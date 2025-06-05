@@ -5,9 +5,9 @@
 
 El lenguaje Gerudo es una lengua construida ficticia, inspirada en la cultura del pueblo Gerudo de la serie *The Legend of Zelda*. Esta implementación formaliza su gramática y vocabulario, permitiendo su análisis sintáctico mediante herramientas como NLTK.
 
-## ✨ Características generales
+##  Características generales
 
-### ✍️ Composición gramatical
+###  Composición gramatical
 
 El lenguaje Gerudo se estructura mediante una **gramática libre de contexto (CFG)**, compuesta por los siguientes elementos principales:
 
@@ -33,7 +33,7 @@ El lenguaje Gerudo se estructura mediante una **gramática libre de contexto (CF
 
 ---
 
-## 🎤 Fonética
+##  Fonética
 
 El lenguaje Gerudo tiene una fonética suave, caracterizada por:
 - Alta presencia de vocales suaves: **a, o, u**
@@ -42,7 +42,7 @@ El lenguaje Gerudo tiene una fonética suave, caracterizada por:
 
 ---
 
-## 🧪 Construcción del léxico y gramática
+##  Construcción del léxico y gramática
 
 Debido a la escasa información canónica disponible, se recurrió a la **improvisación controlada** para expandir el vocabulario. Este proceso incluyó:
 1. Combinación morfológica de raíces conocidas (ej: *vaba + ani = vabani*, "mi cosa").
@@ -51,21 +51,23 @@ Debido a la escasa información canónica disponible, se recurrió a la **improv
 
 El resultado es un vocabulario funcional documentado en el archivo *"Diccionario Gerudo - Español"*. De igual forma se exhibe a continuacion un fragmento de el documento.
 
-## 📖 Determinantes y Sustantivos
+##  Determinantes y Sustantivos
 
 | Gerudo  | Tipo     | Significado      | Origen / Composición |
 |---------|----------|------------------|----------------------|
-| vaba    | Det / N  | la / el          | -                    |
-| ju      | Det / N  | ese / cosa       | -                    |
-| vai     | Det / N  | una / uno        | -                    |
+| ane   | Det / N  | la / el          | -                    |
+| jug      | Det / N  | ese / cosa       | -                    |
+| vaim     | Det / N  | una / uno        | -                    |
 | voe     | Det / N  | hombre           | -                    |
-| vehvi   | Det / N  | espada           | -                    |
+| vehvi   | Det / N  | mujer            | -                    |
+| vermi   | Det / N  | espada            | -                    |
 | vadu    | Det / N  | casa             | -                    |
-| geruta  | Det / N  | guardia          | -                    |
-| devado  | Det / N  | desierto         | -                    |
-| sotvad  | Det / N  | reina            | -                    |
+| geruda  | Det / N  | guardia          | -                    |
+| geruta  | Det / N  | aldea            | -                    |
+| devado  | Det / N  | templo            | -                    |
+| sotvad  | Det / N  | mercado           | -                    |
 
-## 🛅 Pronombres
+##  Pronombres
 
 | Gerudo  | Tipo     | Significado      |
 |---------|----------|------------------|
@@ -74,35 +76,34 @@ El resultado es un vocabulario funcional documentado en el archivo *"Diccionario
 | yaafu   | Pron     | él / ella        |
 | yaava   | Pron     | nosotros         |
 
-## 👥 Posesivos
+##  Posesivos
 
 | Gerudo  | Tipo     | Significado      | Compuesto de      |
 |---------|----------|------------------|-------------------|
-| vabani  | PossN    | mi cosa          | vaba + ani        |
-| juso    | PossN    | tu cosa          | ju + eso          |
-| vadufu  | PossN    | nuestra casa     | vadu + yaava      |
+| vabani  | PossN    | mi abuela          | vaba + ani        |
+| jugso    | PossN    | tu cosa          | ju + eso          |
+| vadufu  | PossN    | su abuela         | vadu + yaava      |
 
-## 🔊 Verbos
+##  Verbos
 
 | Gerudo   | Tipo     | Significado      |
 |----------|----------|------------------|
-| sareqso  | V        | correr           |
-| sosorq   | V        | ver              |
+| sareqso  | V        | alabar          |
 | vurqso   | V        | tener            |
-| daraqso  | V        | proteger         |
-| katvso   | V        | decir            |
-| sotreqso | V        | gobernar         |
+| daraqso  | V        | caminar          |
+| katvso   | V        | construir         |
+| sotreqso | V        | comerciar         |
 
-## 🗺️ Preposiciones
+##  Preposiciones
 
 | Gerudo  | Tipo     | Significado      |
 |---------|----------|------------------|
-| ager    | P        | en               |
-| no      | P        | con              |
-| vaq     | P        | bajo             |
-| sha     | P        | sobre            |
-| mahno   | P        | hacia            |
-| solno   | P        | desde            |
+| ager    | P        | con               |
+| no      | P        | en               |
+| vaq     | P        | hacia             |
+| sha     | P        | para            |
+| mahno   | P        | debajo de         |
+| solno   | P        | sobre            |
 
 ### Análisis de ambigüedad y clasificación en la jerarquía de Chomsky
 
@@ -116,7 +117,7 @@ El objetivo de este proyecto fue buscar un lenguaje que pudiera adaptarse a un a
 
 ---
 
-## 🔹 Gramática Gerudo 
+##  Gramática Gerudo 
 La gramática utilizada contiene recursividad a la izquierda y ambigüedad, lo que fue un reto para los analizadores sintácticos. Se muestra aquí antes del proceso de transformación:
 
 ### Versión inicial (con ambigüedad):
@@ -202,7 +203,7 @@ P -> 'ager' | 'no' | 'vaq' | 'sha' | 'mahno' | 'solno'
 
 La ambigüedad surgía originalmente de la producción recursiva VP -> VP PP, que permitía infinitas formas de asociar complementos preposicionales (PP) a distintos niveles del VP, haciendo incierta la estructura. Al reformular VP como V VP', donde VP' se encarga de manejar opcionalmente complementos (NP o PP) de manera estrictamente secuencial y sin recursividad izquierda, se fuerza a que cada verbo tome un conjunto de complementos de manera determinista. Así, cada oración tiene una única forma de derivación sintáctica, eliminando las múltiples interpretaciones posibles.
 
-### 🛠️ Árbol corregido (estructura sin ambigüedad):
+###  Árbol corregido (estructura sin ambigüedad):
 
 ```bnf
             S
@@ -259,7 +260,7 @@ Al eliminar la doble opción de derivación para PP, se evita que el analizador 
 
 ------
 
-## 🔎 Cómo y por qué se eliminó la recursividad a la izquierda al eliminar la ambigüedad
+##  Cómo y por qué se eliminó la recursividad a la izquierda al eliminar la ambigüedad
 
 Durante el proceso de eliminación de ambigüedad en la gramática del lenguaje Gerudo, fue necesario también eliminar la recursividad a la izquierda, ya que era una de las principales fuentes de ambigüedad estructural.
 
@@ -296,7 +297,7 @@ Esto garantiza que no haya más auto-llamadas inmediatas a `VP` desde su primera
 ------
 
 
-## 📚 Clasificación de oraciones simples y compuestas
+## Clasificación de oraciones simples y compuestas
 
 Durante la evolución de la gramática, se decidió detallar las estructuras de los sintagmas verbales dividiendo el no terminal `VP` en componentes más específicos:
 
@@ -339,7 +340,7 @@ Esta división permite clasificar oraciones según su complejidad verbal:
 
 Esta decisión también permitió refinar el conjunto de árboles sintácticos aceptables y redujo aún más los casos de ambigüedad al especificar más claramente las construcciones posibles en cada tipo de oración.
 
-## ⚖️ Licencia
+##  Licencia
 
 Este proyecto es educativo y no oficial. Inspirado por la serie *The Legend of Zelda*. Toda la lógica gramatical y vocabulario fueron diseñados para fines académicos.
 
@@ -360,6 +361,11 @@ Este proyecto es educativo y no oficial. Inspirado por la serie *The Legend of Z
 - Para evitar problemas con el programa se quitaron las comillas de las palabras debido al malfuncionamiento y errores que causaban, en caso de agregar nuevas palabras recuerden quitar las comillas
   en caso de ser necesario
 
+  ## Actualización
+  - Se modifico el archivo "ExpresionFinal.py" para corregir los siguientes errores.
+    - Se mejoraron y agregaron comentarios adicionales
+    - Caso de error de ambiguedad, causado a partir de duplicidad de palabras en posisiones incorrectas dentro de la expresión regular y a partir de un simbolo "|" extra en las    reglas terminales Det y Poss
+  - Se agrego una funcion para el caso de pruebas junto a un nuevo archivo llamado "ExpF.py" Se recomienda usar este para correr las pruebas, en lugar de "ExpresionFinal.py", debido a que en este ultimo solo se ejecutan las pruebas de uno en uno
   
 ## Bibliografia
 
