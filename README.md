@@ -92,8 +92,9 @@ El resultado es un vocabulario funcional documentado en el archivo *"Diccionario
 |----------|----------|------------------|
 | sareqso  | V        | alabar          |
 | vurqso   | V        | tener            |
-| daraqso  | V        | caminar          |
+| daraqso  | V        | caminar          |  
 | katvso   | V        | construir         |
+| lumaqso   | V        | cantar       |
 | sotreqso | V        | comerciar         |
 
 ##  Preposiciones
