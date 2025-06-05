@@ -17,39 +17,75 @@ Cada oración incluye:
 # Lista de oraciones con traducción y análisis
 oraciones = [
     {
-        "espanol": "Yo voy",
-        "gerudo": "ani sareqso",
+        "espanol": "Yo alabo",
+        "gerudo": "ani sareqso", # Valido
+        "analisis": "Pronombre + Verbo"
+    },
+
+      {
+        "espanol": "Yo alabo",     
+         "gerudo": "sareqso ani", # Rechazado: comienza con verbo, no hay NP antes de VP
         "analisis": "Pronombre + Verbo"
     },
    
     {
-        "espanol": "La niña tiene una espada",
-        "gerudo": "ju voe vurqso vaba vai",
+        "espanol": "Esa niña tiene una espada",
+        "gerudo": "jug vehvi vurqso vaim vermi", # Valido
         "analisis": "Determinante + Nombre + Verbo + Determinante + Nombre"
     },
+
+     {
+        "espanol": "Esa niña tiene una espada",
+        "gerudo": "jug vurqso vaim vermi",  # Rechazado: "jug" sin nombre asociado
+        "analisis": "Determinante + Nombre + Verbo + Determinante + Nombre"
+    },
+
     {
-        "espanol": "El guerrero protege su tribu",
-        "gerudo": "voe vadu daraqso vabani",
+        "espanol": "El guardia  comercia con su abuela",
+        "gerudo": "ane geruda sotreqso ager vabani", # Valido
         "analisis": "Determinante + Nombre + Verbo + Posesivo + Nombre"
     },
+
     {
-        "espanol": "Nosotros hablamos con respeto",
-        "gerudo": "yaava katvso mahno geruta",
-        "analisis": "Pronombre + Verbo + Preposición + Nombre"
+        "espanol": "El guardia protege con su abuela",
+        "gerudo": "ane vadu daraqso ager",  # Rechazado: "ager" sin objeto de la preposición
+        "analisis": "Determinante + Nombre + Verbo + Preposision + Posesivo + Nombre"
     },
+
+
     {
-        "espanol": "Ellos miran a la luna",
-        "gerudo": "eso sareqso ager devado",
-        "analisis": "Pronombre + Verbo + Preposición + Nombre"
+        "espanol": "Ellos alaban la luna",
+        "gerudo": "yaavaa sareqso ane devado", # Valido
+        "analisis": "Pronombre + Verbo + Determinante + Nombre"
     },
+
     {
-        "espanol": "La reina canta en la torre",
-        "gerudo": "voe relva lumaqso mahn juv",
+        "espanol": "Ellos alaban la luna",
+        "gerudo": "yaavaa sareqso aska devado",  # Rechazado: Palabra "aska" inexistente
+        "analisis": "Pronombre + Verbo + Determinante + Nombre"
+    },
+
+    {
+        "espanol": "La mujer canta debajo de la aldea",
+        "gerudo": "ane vai lumaqso mahno geruta", # Valido
         "analisis": "Determinante + Nombre + Verbo + Preposición + Nombre"
     },
+
     {
-        "espanol": "Los niños juegan con fuego",
-        "gerudo": "voe julo ramaqso mahno viri",
+        "espanol": "La mujer canta debajo de la aldea ",
+        "gerudo": "vai vai lumaqso mahno geruta",  # Rechazado: "vai vai" es ambiguo, doble nombre
+        "analisis": "Determinante + Nombre + Verbo + Preposición + Nombre"
+    },
+
+    {
+        "espanol": "Ese niño juegan con fuego",
+        "gerudo": "jug vehvi ramaqso mahno viri", # Valido
+        "analisis": "Determinante + Nombre + Verbo + Preposición + Nombre"
+    },
+
+    {
+        "espanol": "Ese niño juegan con fuego",
+        "gerudo": "jug vehvi ramaqso vaba viri",  #Rechazado: "vaba" es un nombre y no una Preposición
         "analisis": "Determinante + Nombre + Verbo + Preposición + Nombre"
     }
 ]
