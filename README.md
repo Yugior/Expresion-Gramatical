@@ -343,18 +343,52 @@ Esta división permite clasificar oraciones según su complejidad verbal:
 
 Esta decisión también permitió refinar el conjunto de árboles sintácticos aceptables y redujo aún más los casos de ambigüedad al especificar más claramente las construcciones posibles en cada tipo de oración.
 
+##  Complejidad de Archivos 
+
+
+### Archivos analizados:
+- `ExpresionGramatical.py`
+- `Sinambiguedad1.py`
+- `Sinambiguedad2.py`
+- `ExpresionFinal.py`
+- `ExpF.py`
+
+---
+
+### Complejidad computacional y estructural
+
+#### 1. **Uso de gramáticas libres de contexto (CFG)**
+Todos los archivos definen una gramática libre de contexto (CFG) utilizando el módulo `nltk` de Python. Estas gramáticas son procesadas mediante el algoritmo `ChartParser`, que emplea técnicas de parseo eficientes como "Earley parser" o "bottom-up chart parsing".
+
+- **Complejidad temporal promedio del parser**: \( O(n^3) \) en el peor de los casos para frases ambiguas, donde \( n \) es la longitud de la cadena de entrada (tokens).
+- **Complejidad espacial**: \( O(n^2) \) a \( O(n^3) \), dado que se almacenan sub-análisis parciales en una tabla (chart).
+
+#### 2. **Tamaño de la gramática**
+- Archivos como `ExpresionFinal.py` y `ExpF.py` presentan una gramática más completa y refinada con varias reglas alternativas para `VP`, `NP` y `PP`, lo que incrementa el número potencial de derivaciones, especialmente si se producen ambigüedades sintácticas.
+- Los archivos `Sinambiguedad1.py` y `Sinambiguedad2.py` muestran versiones simplificadas que reducen ambigüedad al eliminar producciones como `VP -> VP PP` o `PP -> P PossN`.
+
+#### 3. **Control de ambigüedad**
+- El archivo `ExpresionGramatical.py` tiene variantes como `VSimple`, `VCompuesto` y `VConPP`, lo que permite modular la complejidad del predicado verbal.
+- Se hace un manejo manual para prevenir ambigüedades (comentarios en `ExpF.py`: "ocasionará ambigüedad al estar en dos estados"). Esto evita que una palabra pertenezca simultáneamente a dos categorías gramaticales.
+
+#### 4. **Validación de oraciones** (`ExpF.py`)
+- Se agrega una función `validar_oraciones` que analiza una lista de oraciones desde `EjemplosFuncionales.py`. Esto representa una complejidad adicional de tipo \( O(m \cdot n^3) \), donde \( m \) es el número de oraciones.
+- Aunque el parseo sigue siendo pesado en casos ambiguos, la validación está bien estructurada y permite automatizar pruebas sintácticas de forma efectiva.
+
+---
+
 ##  Licencia
 
 Este proyecto es educativo y no oficial. Inspirado por la serie *The Legend of Zelda*. Toda la lógica gramatical y vocabulario fueron diseñados para fines académicos.
 
 ## Archivos
 
-"ExpresionGramatical.py" Muestra la expresion original antes de quitar ambiguedad
-"Sinambiguedad1.py" Muestra la expresion al quitar la ambiguedad generada por "VP"
-"Sinambiguedad2.py" Muestra la expresion al quitar la amiguedad generada por "PP" luego de haber quitado la anterior
-"ExpresionFinal.py" Muestra la ultima edicion, permitiendo el uso de oraciones mas complejas
-"ExpF.py" Muestra casos de prueba a partir de las oraciones posibles de "ExpresionFinal.py"
-"Ejemplosfuncionales.py" Casos de muestra de oraciones que se ejecutan en Español y el idioma correspondiente
+- "ExpresionGramatical.py" Muestra la expresion original antes de quitar ambiguedad
+- "Sinambiguedad1.py" Muestra la expresion al quitar la ambiguedad generada por "VP"
+- "Sinambiguedad2.py" Muestra la expresion al quitar la amiguedad generada por "PP" luego de haber quitado la anterior
+- "ExpresionFinal.py" Muestra la ultima edicion, permitiendo el uso de oraciones mas complejas
+- "ExpF.py" Muestra casos de prueba a partir de las oraciones posibles de "ExpresionFinal.py"
+- "Ejemplosfuncionales.py" Casos de muestra de oraciones que se ejecutan en Español y el idioma correspondiente
 ## Uso adecuado del programa
 
 - Si bien en el dicionario pararecen mas tipos de palabras, por temas de complejidad solo se permiten las mostradas en la documentacion
@@ -377,7 +411,7 @@ Este proyecto es educativo y no oficial. Inspirado por la serie *The Legend of Z
     - Exisitian palabras iguales con diferente signiicado ej(vanabi/abuela,vanabi/niñ@)
     - Falta de congruencia entre oraciones
     - Se mejoro y actualizo las tablas del diccionario (Cabe aclarar que no estan todas las palabras en el "Readme" o en "Diccionario.pdf" debido a la complejidad de modificar diferentes archivos, en caso de bscar una palabra en especifico, favor de checar ambos.)
-    - 
+  - Se agrego la explicacion de la complejidad en los archivos
   
 ## Bibliografia
 
